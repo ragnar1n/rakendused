@@ -1,36 +1,30 @@
-const taskTitle=document.getElementById('task-title')
 
-taskTitle.style.background='gray'
-taskTitle.style.color='#fff'
-taskTitle.style.padding='15px'
+const form=document.querySelector('#add-task')
 
-taskTitle.textContent='My tasks'
-taskTitle.innerText='Fav tasks'
-taskTitle.innerHTML='<span style=color:red>My Tasks</span>'
-
-let li=document.querySelector('li')
-li=document.querySelector('li:last-child')
-li=document.querySelectorAll('li:nth-child(odd)')
-
-// for (let i=0; i<2; i++){
-//     document.querySelectorAll('li:nth-child(odd)')[i].style.background='#ddd'
-// }
-
-li.forEach((li)=>{li.style.background='#ddd'})
-
-let ul=document.querySelector("ul").parentElement
-
-console.log(ul)
-
-
-const taskInput=document.querySelector('#task')
-
-const form=document.querySelector('form')
 form.addEventListener('submit', addTask)
 
-taskInput.addEventListener('keyup', addTask)
-
 function addTask(event){
-    console.log(taskInput.value)
+    // get form input value
+    const taskInput=document.querySelector('#task')
+
+    //create li with value and X link
+    const li=document.createElement('li')
+    li.appendChild(document.createTextNode(taskInput.value))
+    li.className='collection-item'
+    const x=document.createElement('a')
+    x.appendChild(document.createTextNode('x'))
+    x.setAttribute('href','#')
+    x.className='secondary-content'
+
+    li.appendChild(x)
+
+    const ul=document.querySelector('ul')
+    ul.appendChild(li)
+
+
+
+    // console.log(li)
+    //delete input value from form input field
+    taskInput.value=''
     event.preventDefault()
 }

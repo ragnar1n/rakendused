@@ -21,3 +21,16 @@ li.forEach((li)=>{li.style.background='#ddd'})
 let ul=document.querySelector("ul").parentElement
 
 console.log(ul)
+
+
+const taskInput=document.querySelector('#task')
+
+const form=document.querySelector('form')
+form.addEventListener('submit', addTask)
+
+taskInput.addEventListener('keyup', addTask)
+
+function addTask(event){
+    console.log(taskInput.value)
+    event.preventDefault()
+}

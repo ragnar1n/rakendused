@@ -24,7 +24,7 @@ function addTask(event){
     const ul=document.querySelector('ul')
     ul.appendChild(li)
 
-
+    addTaskToLS(taskInput.value)
 
     // console.log(li)
     //delete input value from form input field
@@ -49,6 +49,17 @@ function deleteAll(event){
     while (taskList.firstChild){
         taskList.removeChild(taskList.firstChild)
     }
+}
+
+function addTaskToLS(task){
+    let tasks
+    if (localStorage.getItem('tasks') === null){
+        tasks=[]
+    } else{
+    tasks=JSON.parse(localStorage.getItem('tasks'))
+    }
+    tasks.push(task)
+    localStorage.setItem('tasks',JSON.stringify(tasks))
 }
 
 // console.log(event.target)

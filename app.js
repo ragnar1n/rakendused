@@ -36,6 +36,8 @@ function deleteTask(event){
     if (event.target.textContent==='x'){
         if(confirm('Are you sure?')){
             event.target.parentElement.remove()
+            let task=event.target.parentElement.textContent.slice(0,length-1)
+            deleteTaskToLS(task)
         }
     }
 
@@ -59,6 +61,21 @@ function addTaskToLS(task){
     tasks=JSON.parse(localStorage.getItem('tasks'))
     }
     tasks.push(task)
+    localStorage.setItem('tasks',JSON.stringify(tasks))
+}
+
+function deleteTaskToLS(task){
+    let tasks
+    if (localStorage.getItem('tasks') === null){
+        tasks=[]
+    } else{
+        tasks=JSON.parse(localStorage.getItem('tasks'))
+    }
+    tasks.forEach((taskLS,index) => {
+        if (taskLS === task){
+            tasks.splice(index,1)
+        }
+    })
     localStorage.setItem('tasks',JSON.stringify(tasks))
 }
 
